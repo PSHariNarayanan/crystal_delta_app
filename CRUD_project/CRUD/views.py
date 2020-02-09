@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
-from .models import User
+from django.http import HttpResponse
+from django.utils import timezone
+from .models import User,Project
 import re
 
 # view for basic login
@@ -19,6 +21,7 @@ def loginHandler(request) :
         password_db = user_details.password
         print(password_db)
         if password_db==password_form :
+            request.session['user_id']=user_details.id
             return redirect('projects')
         else :
             return redirect('login')
@@ -40,4 +43,19 @@ def signupHandler(request) :
          return redirect('signup')
     user = User(username=username,email=email,password=password1)
     user.save()
+    request.session['user_id'] = user.id
     return redirect('projects')
+
+def projects(request) :
+    if request.session.has_key('user_id'):
+      user_id = request.session['user_id']
+      print(user_id)
+      return render(request,'projects.html')
+    else :
+        return redirect('login')
+def createProject(request) :
+    if request.session.has_key('user_id') :
+        name = request.POST.get('name')
+        description = request.get('description')
+        project = Project(name=name,description=description)
+        project.save()
