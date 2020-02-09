@@ -7,5 +7,7 @@ class User(models.Model) :
     password = models.CharField(max_length=225)
 
 class Project(models.Model) :
+    user_id = models.IntegerField()
     name = models.CharField(max_length=225)
     description = models.CharField(max_length=225)
+    createdOn = models.DateTimeField()

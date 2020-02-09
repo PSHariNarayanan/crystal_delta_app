@@ -20,141 +20,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for project in projectList %}
                         <tr>
-                            <th scope="row" class="text-center">1</th>
-                            <td>Mark1</td>
-                            <td>Otto</td>
+                            <th scope="row" class="text-center">{{project.id}}</th>
+                            <td>{{project.name}}</td>
+                            <td>{{project.description}}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
                                 <button type="button" class="btn btn-secondary btn-sm">Delete</button>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row" class="text-center">2</th>
-                            <td>Mark2</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">3</th>
-                            <td>Mark3</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1</th>
-                            <td>Mark1</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">2</th>
-                            <td>Mark2</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">3</th>
-                            <td>Mark3</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1</th>
-                            <td>Mark1</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">2</th>
-                            <td>Mark2</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">3</th>
-                            <td>Mark3</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1</th>
-                            <td>Mark1</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">2</th>
-                            <td>Mark2</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">3</th>
-                            <td>Mark3</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1</th>
-                            <td>Mark1</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">2</th>
-                            <td>Mark2</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">3</th>
-                            <td>Mark3</td>
-                            <td>Otto</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm mr-1">Edit</button>
-                                <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

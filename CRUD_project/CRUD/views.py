@@ -6,7 +6,10 @@ import re
 
 # view for basic login
 def login(request) : 
-    return render(request,'login.html')
+    if request.session.has_key('user_id') :
+        return redirect('projects')
+    else :
+       return render(request,'login.html')
 
 # view for handling login
 def loginHandler(request) :
@@ -28,19 +31,21 @@ def loginHandler(request) :
 
 # view for basic signup
 def signUp(request) :
+    if request.session.has_key('user_id') :
+        return redirect('projects')
     return render(request,'signup.html')
 
 # view for handling signup
-def signupHandler(request) :
+def signUpHandler(request) :
     email = request.POST.get('email')
     regex = r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
     if not re.search(regex,email) :
-        return redirect('signup')
+        return redirect('signUp')
     username = request.POST.get('username')
     password1 = request.POST.get('password1')
     password2 = request.POST.get('password2')
     if password1!=password2 :
-         return redirect('signup')
+         return redirect('signUp')
     user = User(username=username,email=email,password=password1)
     user.save()
     request.session['user_id'] = user.id
@@ -49,13 +54,20 @@ def signupHandler(request) :
 def projects(request) :
     if request.session.has_key('user_id'):
       user_id = request.session['user_id']
-      print(user_id)
-      return render(request,'projects.html')
+      projectList = Project.objects.all().filter(user_id=user_id)
+      return render(request,'projects.html',{'projectList' : projectList})
     else :
         return redirect('login')
+
 def createProject(request) :
+    return render(request,'addProject.html')
+
+def createProjectHandler(request) : 
     if request.session.has_key('user_id') :
+        user_id = request.session['user_id']
         name = request.POST.get('name')
-        description = request.get('description')
-        project = Project(name=name,description=description)
+        description = request.POST.get('description')
+        project = Project(user_id=user_id,name=name,description=description,createdOn=timezone.now())
         project.save()
+        print(project)
+        return redirect('projects')
