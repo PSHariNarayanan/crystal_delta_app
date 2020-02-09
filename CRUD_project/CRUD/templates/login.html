@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-5">
+            <div class="formWrapper shadow">
+                <div class="header">
+                    Login
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" name="emai" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" name="password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+                <div class="redirections">
+                    <a href="/signup/">Register an account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
