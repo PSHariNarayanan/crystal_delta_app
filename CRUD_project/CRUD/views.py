@@ -71,3 +71,26 @@ def createProjectHandler(request) :
         project.save()
         print(project)
         return redirect('projects')
+
+def deleteProject(request,id) :
+    if request.session.has_key('user_id') :
+        Project.objects.get(id=id).delete()
+        return redirect('projects')
+    else :
+        return redirect('login')
+
+def editProject(request,id) :
+    if request.session.has_key('user_id') : 
+        project = Project.objects.get(id=id)
+        return render(request,'editProject.html',{'project' : project})
+    else :
+        return redirect('login')
+def editProjectHandler(request) :
+    if request.session.has_key('user_id') : 
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        project_id = request.POST.get('project_id')
+        Project.objects.filter(id=project_id).update(name=name,description=description)
+        return redirect('projects')
+    else :
+        return redirect('login')
