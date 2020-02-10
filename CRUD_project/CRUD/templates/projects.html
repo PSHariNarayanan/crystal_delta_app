@@ -24,7 +24,7 @@
                     <tbody>
                         {% for project in projectList %}
                         <tr>
-                            <th scope="row" class="text-center">{{project.id}}</th>
+                            <th scope="row" class="text-center">{{forloop.counter}}</th>
                             <td>{{project.name}}</td>
                             <td>{{project.description}}</td>
                             <td>{{project.createdOn}}</td>

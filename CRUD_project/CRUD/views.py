@@ -4,6 +4,8 @@ from django.utils import timezone
 from .models import User,Project
 import re
 
+def home(request) : 
+    return render(request,'home.html')
 '''
 login checks for user-login status using session
 and directs to projects page else redirects to login page
