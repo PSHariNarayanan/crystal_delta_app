@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             name='Project',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user_id', models.IntegerField()),
+                ('userID', models.IntegerField()),
                 ('name', models.CharField(max_length=225)),
                 ('description', models.CharField(max_length=225)),
                 ('createdOn', models.DateTimeField()),
