@@ -4,6 +4,7 @@
         <div class="container">
             <span class="navbar-brand mb-0 h1">Projects</span>
             <a href="/createProject/" class="btn btn-dark">Create project</a>
+            <a href="/logout/" class="btn btn-dark">Log Out</a>
         </div>
     </nav>
     
@@ -16,6 +17,7 @@
                             <th scope="col" class="text-center">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
+                            <th scope="col">createdOn</th>
                             <th scope="col" class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -25,6 +27,7 @@
                             <th scope="row" class="text-center">{{project.id}}</th>
                             <td>{{project.name}}</td>
                             <td>{{project.description}}</td>
+                            <td>{{project.createdOn}}</td>
                             <td class="text-center">
                                 <a href="{% url 'editProject' project.id %}" class="btn btn-secondary btn-sm mr-1">Edit</a>
                                 <a href="{% url 'deleteProject' project.id %}" class="btn btn-secondary btn-sm">Delete</a>
