@@ -11,7 +11,7 @@ login checks for user-login status using session
 and directs to projects page else redirects to login page
 '''
 def login(request) : 
-    if request.session.has_key('userID') :
+    if request.session.has_key('user_id') :
         return redirect('projects')
     else :
        return render(request,'login.html')
@@ -32,7 +32,7 @@ def loginHandler(request) :
         dbPassword = userDetails.password
         print(dbPassword)
         if dbPassword==formPassword :
-            request.session['userID']=userDetails.id
+            request.session['user_id']=userDetails.id
             return redirect('projects')
         else :
             return redirect('login')
@@ -42,7 +42,7 @@ signUp checks for user-login status using session
 and directs to projects page else redirects to signup page 
 '''
 def signup(request) :
-    if request.session.has_key('userID') :
+    if request.session.has_key('user_id') :
         return redirect('projects')
     else :
        return render(request,'signup.html')
@@ -63,7 +63,7 @@ def signUpHandler(request) :
          return redirect('signup')
     user = User(username=username,email=email,password=password1)
     user.save()
-    request.session['userID'] = user.id
+    request.session['user_id'] = user.id
     return redirect('projects')
 
 '''
@@ -71,9 +71,9 @@ projects checks for user-login status and directs to projects page
 along with projects of the coresponding user else redirects to login page
 '''
 def projects(request) :
-    if request.session.has_key('userID'):
-      userID = request.session['userID']
-      projectList = Project.objects.all().filter(userID=userID)
+    if request.session.has_key('user_id'):
+      user_id = request.session['user_id']
+      projectList = Project.objects.all().filter(user_id=user_id)
       return render(request,'projects.html',{'projectList' : projectList})
     else :
         return redirect('login')
@@ -82,7 +82,7 @@ def projects(request) :
 createProjects directs the user to addproject page
 '''
 def createProject(request) :
-    if request.session.has_key('userID') :
+    if request.session.has_key('user_id') :
         return render(request,'addProject.html')
     else :
         return redirect('login')
@@ -92,11 +92,11 @@ createProjectHandler checks for user-login status,stores the project details in 
 and directs to projects page
 '''
 def createProjectHandler(request) : 
-    if request.session.has_key('userID') :
-        userID = request.session['userID']
+    if request.session.has_key('user_id') :
+        user_id = request.session['user_id']
         name = request.POST.get('name')
         description = request.POST.get('description')
-        project = Project(userID=userID,name=name,description=description,createdOn=timezone.now())
+        project = Project(user_id=user_id,name=name,description=description,createdOn=timezone.now())
         project.save()
         return redirect('projects')
 
@@ -104,7 +104,7 @@ def createProjectHandler(request) :
 deleteProject checks for user-login status and deletes the project details using project id
 '''
 def deleteProject(request,id) :
-    if request.session.has_key('userID') :
+    if request.session.has_key('user_id') :
         Project.objects.get(id=id).delete()
         return redirect('projects')
     else :
@@ -115,7 +115,7 @@ editProject checks for user-login status and directs to editProject page along w
 else redirects to login page
 '''
 def editProject(request,id) :
-    if request.session.has_key('userID') : 
+    if request.session.has_key('user_id') : 
         project = Project.objects.get(id=id)
         return render(request,'editProject.html',{'project' : project})
     else :
@@ -126,7 +126,7 @@ editProjectHandler checks for user-login status and updates the project details 
 else redirects to login page
 '''
 def editProjectHandler(request) :
-    if request.session.has_key('userID') : 
+    if request.session.has_key('user_id') : 
         name = request.POST.get('name')
         description = request.POST.get('description')
         project_id = request.POST.get('project_id')
@@ -137,7 +137,7 @@ def editProjectHandler(request) :
 
 def logout(request) : 
     try:
-        del request.session['userID']
+        del request.session['user_id']
     except KeyError:
         pass
     return redirect('login')

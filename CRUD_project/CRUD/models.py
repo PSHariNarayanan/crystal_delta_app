@@ -9,10 +9,10 @@ class User(models.Model) :
     password = models.CharField(max_length=225)
 
 '''
-The Project Model has fields userID which has PK-FK relationship with User model,name,description and created on timestamp
+The Project Model has fields user_id which has PK-FK relationship with User model,name,description and created on timestamp
 '''
 class Project(models.Model) :
-    userID = models.IntegerField()
+    user_id = models.IntegerField()
     name = models.CharField(max_length=225)
     description = models.CharField(max_length=225)
     createdOn = models.DateTimeField()
